@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DamageEvent extends Model
 {
     use HasFactory;
+
+    public function vehicles(){
+        return $this->belongsToMany(Vehicle::class);
+    }
 }
