@@ -9,6 +9,12 @@ class SearchHistory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'license_plate',
+        'date',
+        'user_id'
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

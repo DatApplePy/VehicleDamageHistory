@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('search_histories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('license_plate');
-            $table->date('date');
+            $table->dateTime('date');
+            $table->timestamps();
         });
     }
 

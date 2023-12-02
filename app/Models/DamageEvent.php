@@ -9,6 +9,12 @@ class DamageEvent extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'location',
+        'date',
+        'description'
+    ];
+
     public function vehicles(){
         return $this->belongsToMany(Vehicle::class);
     }

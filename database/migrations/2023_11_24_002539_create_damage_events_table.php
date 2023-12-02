@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('damage_events', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('location');
             $table->dateTime('date');
             $table->longText('description')->nullable();
+            $table->timestamps();
         });
     }
 

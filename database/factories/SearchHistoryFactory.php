@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class SearchHistoryFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = fake();
+        $faker -> addProvider(new Fakecar($faker));
+
         return [
-            //
+            'license_plate' => $faker -> vehicleRegistration(),
+            'date' => now(),
+            'user_id' => fake() -> randomDigit()
         ];
     }
 }

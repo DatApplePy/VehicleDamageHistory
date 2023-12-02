@@ -17,7 +17,9 @@ class DamageEventFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'location' => fake("hu_HU") -> smallerCity(),
+            'date' => fake() -> dateTime(),
+            'description' => fake() -> text()
         ];
     }
 }

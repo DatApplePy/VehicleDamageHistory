@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\DamageEventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchHistoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +19,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('main');
+}) -> name('/');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('/vehicles', VehicleController::class) -> except(['destroy']) -> middleware('auth');
+
+Route::resource('/damage-events', DamageEventController::class) -> middleware('auth');
+
+Route::resource('/search-histories', SearchHistoryController::class) -> except(['create', 'edit', 'show']) -> middleware('auth');
+
+Route::resource('/users', UserController::class) -> only(['index', 'update']) -> middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
